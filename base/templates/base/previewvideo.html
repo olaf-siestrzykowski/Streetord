@@ -1,0 +1,13 @@
+{% load embed_video_tags %}
+
+{% block content %}
+  <h1>Videos</h1>
+
+  {% for vid in videos %}
+    <video width="320" height="240" controls autoplay loop muted>
+      <source src="{{vid.video_file.url}}" type="video/mp4" />
+    </video>
+    {{ vid.title }}
+
+  {% endfor %}
+{% endblock content %}
