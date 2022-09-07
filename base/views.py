@@ -216,7 +216,6 @@ def uploadVideo(request):
             title=request.POST.get('title'),
             video_file=request.POST.get('video_file'),
             added=request.POST.get('added')
-
         )
         if form.is_valid():
             form.save()
@@ -227,5 +226,9 @@ def uploadVideo(request):
 
 
 def videopreview(request):
-    videos = Video.objects.all()
-    return render(request, 'base/videopreview.html', {'videos': videos})
+    if request.method == 'GET':
+        videos = Video.objects.all()
+        return render(request, 'base/videopreview.html', {'videos': videos})
+
+
+# kliknięcie ikonki aktywnego użytkownika wyświetlając profil innego użytkowanika nie działa TO FIX

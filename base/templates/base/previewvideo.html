@@ -4,7 +4,7 @@
   <h1>Videos</h1>
 
   {% for vid in videos %}
-    <video width="320" height="240" controls autoplay loop muted>
+    <video id="my-video" width="320" height="240" controls preload="auto" data-setup="{}" autoplay muted>
       <source src="{{vid.video_file.url}}" type="video/mp4" />
     </video>
     {{ vid.title }}
