@@ -22,7 +22,6 @@
             <p>@{{user.username}}</p>
             {% if request.user == user %}
             <a href="{% url 'update-user' %}" class="btn btn--main btn--pill">Edit Profile</a>
-            <a href="{% url 'upload-video' %}" class="btn btn--main btn--pill">Upload Video</a>
             {% endif %}
           </div>
           <div class="profile__about">
@@ -31,9 +30,7 @@
              {{user.bio}}
             </p>
           </div>
-          <div>
-            {% include 'base/previewvideo.html' %}
-          </div>
+
         </div>
 
         <div class="roomList__header">

@@ -52,16 +52,3 @@ class Message(models.Model):
     def __str__(self):
         return self.body[0:50]
 
-
-class Video(models.Model):
-    title = models.CharField(max_length=100)
-    video_file = models.FileField(upload_to='video', validators=[file_size])
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    added = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        ordering = ['-added']
-

@@ -4,8 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
-from .models import Room, Topic, Message, User, Video
-from .forms import RoomForm, UserForm, MyUserCreationForm, VideoForm
+from .models import Room, Topic, Message, User
+from .forms import RoomForm, UserForm, MyUserCreationForm
 # Create your views here.
 
 '''rooms = [
@@ -203,26 +203,6 @@ def topicsPage(request):
 def activityPage(request):
     room_messages = Message.objects.all()
     return render(request, 'base/activity', {})
-
-
-@login_required(login_url='login')
-def uploadVideo(request):
-    user = request.user
-    form = VideoForm(request.POST, request.FILES)
-    if request.method == 'POST':
-        form = VideoForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            redirect('user-profile', pk=user.id)
-    else:
-        form = VideoForm()
-    return render(request, 'base/upload-video.html', {"form": form})
-
-
-def videopreview(request):
-    if request.method == 'GET':
-        videos = Video.objects.all()
-    return render(request, 'base/previewvideo.html', {'videos': videos})
 
 
 # kliknięcie ikonki aktywnego użytkownika wyświetlając profil innego użytkowanika nie działa TO FIX
