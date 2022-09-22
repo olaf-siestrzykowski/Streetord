@@ -208,27 +208,21 @@ def activityPage(request):
 @login_required(login_url='login')
 def uploadVideo(request):
     user = request.user
-    form = VideoForm()
+    form = VideoForm(request.POST, request.FILES)
     if request.method == 'POST':
-        form = VideoForm(data=request.POST, files=request.FILES)
-        video = Video.objects.create(
-            owner=request.user,
-            title=request.POST.get('title'),
-            video_file=request.POST.get('video_file'),
-            added=request.POST.get('added')
-        )
+        form = VideoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             redirect('user-profile', pk=user.id)
-        else:
-            form = VideoForm()
+    else:
+        form = VideoForm()
     return render(request, 'base/upload-video.html', {"form": form})
 
 
 def videopreview(request):
     if request.method == 'GET':
         videos = Video.objects.all()
-        return render(request, 'base/videopreview.html', {'videos': videos})
+    return render(request, 'base/previewvideo.html', {'videos': videos})
 
 
 # kliknięcie ikonki aktywnego użytkownika wyświetlając profil innego użytkowanika nie działa TO FIX
