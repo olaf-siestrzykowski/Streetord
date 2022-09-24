@@ -7,8 +7,8 @@ Social forum site for Street Dancers.
 
 Future plans:
 
-- user gallery (photos and videos)
+- [ ]  user gallery (photos and videos)
 
-- direct messages
+- [ ] direct messages
 
-- emoticons, gifs, image attachments to messages
+- [ ] emoticons, gifs, image attachments to messages
